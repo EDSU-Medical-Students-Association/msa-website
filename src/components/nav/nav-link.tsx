@@ -38,7 +38,7 @@ export const NavLink = ({ href, text }: NavLinkProps) => {
         });
       }
     },
-    { scope: childOne, dependencies: [isHovered] }
+    { scope: childOne, dependencies: [isHovered] },
   );
   useGSAP(
     () => {
@@ -63,7 +63,7 @@ export const NavLink = ({ href, text }: NavLinkProps) => {
     {
       scope: childTwo,
       dependencies: [isHovered],
-    }
+    },
   );
   return (
     <Link
@@ -81,7 +81,7 @@ export const NavLink = ({ href, text }: NavLinkProps) => {
                 transformStyle: "preserve-3d",
                 transformOrigin: "top",
               }}
-              className="letter will-change-transform inline-block"
+              className="letter inline-block will-change-transform"
             >
               {letter}
             </span>
@@ -98,7 +98,7 @@ export const NavLink = ({ href, text }: NavLinkProps) => {
                 transformOrigin: "bottom",
                 transform: "rotateX(-90deg)",
               }}
-              className="letter will-change-transform inline-block"
+              className="letter inline-block will-change-transform"
             >
               {letter}
             </span>

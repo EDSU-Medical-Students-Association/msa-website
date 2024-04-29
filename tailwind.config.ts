@@ -18,6 +18,13 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        "2xs": ["0.625rem", "0.75rem"],
+        "3xs": ["0.5rem", "0.75rem"],
+      },
+      padding: {
+        "7.5": "1.875rem",
+      },
       gridTemplateColumns: {
         "xs-nav": "4fr 1fr",
       },
