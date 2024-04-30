@@ -41,7 +41,12 @@ export const Hero = () => {
               <Button asChild size={"lg"}>
                 <Link href={"/"}>About School</Link>
               </Button>
-              <Button asChild size={"lg"}>
+              <Button
+                asChild
+                size={"lg"}
+                variant={"secondary"}
+                className=" border border-neutral-950 bg-white"
+              >
                 <Link href={"/"}>Contact Us </Link>
               </Button>
             </div>
@@ -66,7 +71,7 @@ export const Hero = () => {
           <div
             data-scroll
             data-scroll-speed={"0.6"}
-            className="absolute top-full z-10 w-60 translate-x-9 justify-self-center rounded-[6px] border border-green-500 bg-green-300 p-4 text-left md:top-3/4 md:w-80 md:justify-self-start lg:w-96"
+            className="absolute top-full z-10 w-60 translate-x-9 justify-self-center rounded-[6px] border border-green-500 bg-[#C3EFC8] p-4 text-left md:top-3/4 md:w-80 md:justify-self-start lg:w-96"
           >
             <div>
               <p>May</p>
