@@ -17,11 +17,7 @@ export const Scroll = ({ children, className }: ScrollProps) => {
     });
   }, []);
   return (
-    <div
-      ref={container}
-      data-scroll-container
-      className={cn("h-[500svh]", className)}
-    >
+    <div ref={container} data-scroll-container className={cn("", className)}>
       {children}
     </div>
   );

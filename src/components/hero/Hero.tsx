@@ -7,6 +7,7 @@ import { crismonPro } from "~/fonts";
 import { Button } from "~/components/ui/button";
 import { Container } from "~/components/base/container";
 import { cn } from "~/lib/utils";
+import { Goto } from "../common/goto";
 
 export const Hero = () => {
   return (
@@ -86,13 +87,10 @@ export const Hero = () => {
                 NIMSA Games 101 for Medical Students&apos; Association
               </h3>
             </div>
-            <div className="group">
-              <Link href={``} className="flex items-center gap-3">
-                <span className="font-bold">Discover Events</span>
-                <span className="rounded-full border border-neutral-950 p-1 transition-transform ease-in-out group-hover:translate-x-1">
-                  <ArrowRightIcon />
-                </span>
-              </Link>
+            <div>
+              <Goto href="/" arrowDirection="straight">
+                Discover Events
+              </Goto>
             </div>
           </div>
         </div>

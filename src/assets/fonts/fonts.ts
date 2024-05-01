@@ -1,10 +1,9 @@
-import { Crimson_Pro } from "next/font/google";
 import localFont from "next/font/local";
 
-const crismonPro = Crimson_Pro({
-  subsets: ["latin"],
-  variable: "--font-crismon-pro",
+const crismonPro = localFont({
+  src: "./CrismonPro/CrimsonPro-VariableFont_wght.ttf",
   display: "swap",
+  variable: "--font-crismon-pro",
 });
 
 const BDOGrotesk = localFont({
