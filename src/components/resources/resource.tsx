@@ -31,7 +31,7 @@ export const Resource = ({
   alt,
 }: ResourceProps) => {
   return (
-    <Card className="rounded-none border-0 bg-neutral-100 px-4 py-2 shadow-none md:px-6 md:py-4 md:text-3xs lg:px-8 lg:py-6">
+    <Card className="resource rounded-none border-0 bg-neutral-100 px-4 py-2 shadow-none md:px-6 md:py-4 md:text-3xs lg:px-8 lg:py-6">
       <CardHeader className="relative w-max">
         <div className="aspect-square w-[0.00125rem]">
           <Image fill src={icon} alt={alt} />
@@ -45,7 +45,7 @@ export const Resource = ({
           <p>{description}</p>
         </CardDescription>
       </CardContent>
-      <CardFooter className="p-0 md:text-2xs lg:text-base">
+      <CardFooter className="p-0 md:text-2xs lg:text-xs">
         <div>
           <Goto href={href} arrowDirection="slant">
             Learn More

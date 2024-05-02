@@ -1,3 +1,4 @@
+"use client";
 import { crismonPro } from "~/fonts";
 
 import { cn } from "~/lib/utils";
@@ -5,6 +6,11 @@ import { cn } from "~/lib/utils";
 import { Container } from "~/components/base/container";
 
 import { Resource } from "~/components/resources/resource";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ElementRef, useRef } from "react";
+gsap.registerPlugin(useGSAP);
 
 interface Resource {
   icon: string;
@@ -50,9 +56,26 @@ const resources: Resource[] = [
 ];
 
 export const Resources = () => {
+  const container = useRef<ElementRef<"div">>(null);
+
+  useGSAP(
+    () => {
+      console.log("gsap triggered");
+
+      gsap.to(".resource", {
+        x: 300,
+        color: "red",
+        onComplete: () => console.log("tracking"),
+      });
+    },
+    { scope: container },
+  );
+
+  console.log("component re-rendered");
+
   return (
-    <section className="relative block py-8">
-      <Container>
+    <section className=" py-24 ">
+      <Container className="">
         <div className={cn(crismonPro.variable, "pb-6 font-serif")}>
           <h3 className="text-2xl font-semibold">
             Essential Resources for Students
