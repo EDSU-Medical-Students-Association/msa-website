@@ -38,11 +38,16 @@ export const Resource = ({
         </div>
       </CardHeader>
       <CardContent className="px-0 py-6">
-        <CardTitle className="pb-3 text-base lg:text-lg">
-          <h4 className={cn(crismonPro.variable, "font-serif")}>{title}</h4>
+        <CardTitle
+          className={cn(
+            crismonPro.variable,
+            "pb-3 font-serif text-base lg:text-lg",
+          )}
+        >
+          {title}
         </CardTitle>
         <CardDescription className="md:text-2xs lg:text-xs">
-          <p>{description}</p>
+          {description}
         </CardDescription>
       </CardContent>
       <CardFooter className="p-0 md:text-2xs lg:text-xs">

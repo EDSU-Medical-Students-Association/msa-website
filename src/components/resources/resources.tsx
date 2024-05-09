@@ -75,7 +75,7 @@ export const Resources = () => {
 
   return (
     <section className=" py-24 ">
-      <Container className="">
+      <Container>
         <div className={cn(crismonPro.variable, "pb-6 font-serif")}>
           <h3 className="text-2xl font-semibold">
             Essential Resources for Students

@@ -28,18 +28,16 @@ export const Service = ({ src, title, description, alt }: ServiceProps) => {
       <div className="absolute z-10 grid h-full w-full items-end">
         <div>
           <CardHeader>
-            <CardTitle>
-              <h3
-                className={cn(
-                  crismonPro.variable,
-                  "font-serif text-white md:text-lg lg:text-xl",
-                )}
-              >
-                {title}
-              </h3>
+            <CardTitle
+              className={cn(
+                crismonPro.variable,
+                "font-serif text-white md:text-lg lg:text-xl",
+              )}
+            >
+              {title}
             </CardTitle>
-            <CardDescription>
-              <p className="text-white md:text-3xs lg:text-xs">{description}</p>
+            <CardDescription className="text-white md:text-3xs lg:text-xs">
+              {description}
             </CardDescription>
           </CardHeader>
         </div>
