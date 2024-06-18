@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { BDOGrotesk } from "~/fonts";
 import "./globals.scss";
-import NavBar from "~/components/nav/nav-bar";
+import NavBar from "~/components/layouts/nav/nav-bar";
+import { Footer } from "~/components/layouts/footer/footer";
 
 export const metadata: Metadata = {
   title: "EDSU MSA | Home",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${BDOGrotesk.variable} font-sans`}>
         <NavBar />
         {children}
+        <Footer />
       </body>
     </html>
   );
