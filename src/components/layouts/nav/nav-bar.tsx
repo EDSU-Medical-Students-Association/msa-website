@@ -56,20 +56,20 @@ const NavBar = () => {
               <NavLink href="/" text="Index" />
             </li>
             <li>
-              <NavLink href="/payments" text="Payment" />
+              <NavLink href="/dashboard" text="Dashboard  " />
             </li>
-            <li>
+            {/* <li>
               <NavLink href="/info" text="Info" />
-            </li>
+            </li> */}
             <li>
               <NavLink href="/about" text="About" />
             </li>
             <li>
               <NavLink href="/contact" text="Contact" />
             </li>
-            <li>
+            {/* <li>
               <NavLink href="" text="Admissions" />
-            </li>
+            </li> */}
           </ul>
         </section>
         <section className="z-[60] justify-self-end md:hidden">

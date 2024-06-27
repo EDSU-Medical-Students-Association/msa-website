@@ -41,20 +41,24 @@ export const Menu = ({ show }: MenuProps) => {
           </li>
           <li className="item flex gap-3">
             <span className="text-xs">[02]</span>
-            <NavLink href="/" text="Payments" />
+            <NavLink href="/dashboard" text="Dashboard" />
           </li>
-          <li className="item flex gap-3">
+          {/* <li className="item flex gap-3">
             <span className="text-xs">[03]</span>
             <NavLink href="/" text="Info" />
+          </li> */}
+          <li className="item flex gap-3">
+            <span className="text-xs">[03]</span>
+            <NavLink href="/about" text="About" />
           </li>
           <li className="item flex gap-3">
             <span className="text-xs">[04]</span>
-            <NavLink href="/" text="About" />
+            <NavLink href="/contact" text="Contact" />
           </li>
-          <li className="item flex gap-3">
+          {/* <li className="item flex gap-3">
             <span className="text-xs">[05]</span>
             <NavLink href="/" text="Admissions" />
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="flex h-1/6 items-end justify-end text-base">

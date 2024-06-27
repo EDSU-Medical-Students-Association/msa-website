@@ -4,7 +4,7 @@ import { ElementRef, useRef } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+// import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 import { crismonPro } from "~/fonts";
 
@@ -100,7 +100,7 @@ export const Hero = () => {
                 variant={"secondary"}
                 className=" border border-neutral-950 bg-white"
               >
-                <RegisterLink>Sign Up</RegisterLink>
+                Sign Up
               </Button>
             </div>
           </div>
