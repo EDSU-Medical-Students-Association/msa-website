@@ -4,6 +4,7 @@ import { Resources } from "~/components/home/resources/resources";
 import { Services } from "~/components/home/services/services";
 import { Engagements } from "~/components/home/engagements/engagements";
 
+
 export default function Home() {
   return (
     <main className="text-base">

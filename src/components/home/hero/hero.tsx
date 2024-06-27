@@ -4,7 +4,6 @@ import { ElementRef, useRef } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
-// import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 import { crismonPro } from "~/fonts";
 
@@ -64,9 +63,9 @@ export const Hero = () => {
       ref={container}
       className="grid w-full items-center text-center md:h-svh md:text-left"
     >
-      <Container className="grid gap-32 py-32 md:h-4/6 md:grid-cols-2 md:gap-0 md:py-0 lg:h-5/6 2xl:h-[65svh]">
+      <Container className="grid gap-32 py-32 md:h-4/6 md:grid-cols-2 md:gap-0 md:py-0 lg:h-5/6 2xl:h-[85svh]">
         <div className="grid items-end">
-          <div className="grid h-fit gap-8">
+          <div className="grid h-fit gap-72">
             <div>
               <hgroup className="flex flex-col gap-3 px-6 md:px-0">
                 <h1
