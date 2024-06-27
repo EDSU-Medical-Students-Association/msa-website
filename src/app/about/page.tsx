@@ -24,6 +24,7 @@ export default function About() {
       <Gallery />
       <Question />
       <Support />
+
     </main>
   );
 }
