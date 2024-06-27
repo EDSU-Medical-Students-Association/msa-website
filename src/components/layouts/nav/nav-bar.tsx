@@ -1,7 +1,11 @@
+"use client"
 import Link from "next/link";
 import { NavLogo } from "~/components/layouts/nav/nav-logo";
 import { NavWordMark } from "~/components/layouts/nav/nav-word-mark";
+
+import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
+gsap.registerPlugin(useGSAP);
 import {ElementRef, useRef, useState} from "react";
 
 
