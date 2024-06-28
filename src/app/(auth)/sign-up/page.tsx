@@ -45,7 +45,7 @@ const SignUp = () => {
   };
 
   return (
-    <section>
+    <section className="h-svh">
       <Container className="grid justify-center">
         <div className="py-6 text-center">
           <h2
