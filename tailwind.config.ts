@@ -27,6 +27,7 @@ const config = {
       },
       gridTemplateColumns: {
         "xs-nav": "4fr 1fr",
+        "dashboard": "2fr 6fr",
         "xs-auth-nav": "4fr 1fr 1fr",
       },
       fontFamily: {

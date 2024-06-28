@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const NavLogo = () => {
   return (
-    <div className="relative flex aspect-square w-10 md:w-12 xl:w-14 items-center">
+    <div className="relative flex aspect-square w-8 items-center md:w-10 xl:w-12">
       <Image
         src="/msa.logo.png"
         fill={true}
