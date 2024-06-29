@@ -24,7 +24,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { useState, useEffect } from "react"; // Import useState and useEffect for managing state and side effects
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "~/components/firebase/firebase"; // Updated import path
 import { FormButton } from "~/components/ui/form-button";
 
@@ -37,6 +37,7 @@ export type UserSignUpSchema = z.infer<typeof userSignInSchema>;
 
 const SignIn = () => {
   const [message, setMessage] = useState(""); // State for error messages
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true); // State for checking auth
   const router = useRouter(); // Router for redirection
   const form = useForm<z.infer<typeof userSignInSchema>>({
     resolver: zodResolver(userSignInSchema),
@@ -47,10 +48,15 @@ const SignIn = () => {
   });
 
   useEffect(() => {
-    const idToken = localStorage.getItem("idToken");
-    if (idToken) {
-      router.push("/"); // Redirect to home page if already signed in
-    }
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        router.push("/");
+      } else {
+        setIsCheckingAuth(false);
+      }
+    });
+
+    return () => unsubscribe();
   }, [router]);
 
   const onSubmit = async (values: z.infer<typeof userSignInSchema>) => {
@@ -63,9 +69,11 @@ const SignIn = () => {
       );
       const idToken = await userCredential.user.getIdToken();
       localStorage.setItem("idToken", idToken);
+      setMessage("Success"); // Set success message
       console.log("Signed in successfully:", userCredential.user);
-      router.back(); // Redirect to the previous page or home page if none
+      router.push("/"); // Redirect to the home page
     } catch (error: any) {
+
       if (
         error.code === "auth/wrong-password" ||
         error.code === "auth/user-not-found"
@@ -76,6 +84,10 @@ const SignIn = () => {
       }
     }
   };
+
+  if (isCheckingAuth) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="h-svh">

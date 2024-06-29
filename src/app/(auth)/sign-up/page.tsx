@@ -23,11 +23,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Import useRouter for redirection
-import { useState } from "react"; // Import useState for managing state
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "~/components/firebase/firebase"; // Ensure the path is correct
-import { AiOutlineCheckCircle } from "react-icons/ai"; // Import green tick icon
+import { auth } from "~/components/firebase/firebase";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FormButton } from "~/components/ui/form-button";
 
 const userSignUpSchema = z.object({

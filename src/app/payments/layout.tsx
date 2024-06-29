@@ -1,0 +1,53 @@
+// import type { Metadata } from "next";
+import { BDOGrotesk } from "~/fonts";
+// import "./globals.scss";
+import { NavBar } from "~/components/dashboard/nav/nav-bar";
+import { Container } from "~/components/layouts/base/container";
+import Link from "next/link";
+import { NavLogo } from "~/components/layouts/nav/nav-logo";
+import { NavWordMark } from "~/components/layouts/nav/nav-word-mark";
+import { Button } from "~/components/ui/button";
+// import { Footer } from "~/components/layouts/footer/footer";
+
+// export const metadata: Metadata = {
+//   title: "EDSU MSA | Home",
+//   description:
+//     "EDSUMSA is a student-run organization dedicated to supporting and empowering medical students at Edo State University Uzairue. We provide academic resources, professional development opportunities, and a supportive community for future medical professionals.",
+//   keywords:
+//     "Edo State University Uzairue, Medical Students' Association, EDSUMSA, Nigeria, Medical Education, Medical Students, Future Doctors",
+// };
+
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className="w-screen overflow-x-hidden">
+      <body className={`${BDOGrotesk.variable} font-sans`}>
+        <NavBar />
+        <section className=" h-svh w-screen ">
+          <Container className="grid grid-cols-dashboard gap-5 py-10">
+            <aside className="h-full w-full rounded-sm bg-neutral-50 px-6 py-4">
+              <section className="">
+                <Link
+                  href={"/"}
+                  className="flex h-full w-full items-center gap-1 text-sm sm:gap-3"
+                >
+                  <NavLogo />
+                  <NavWordMark />
+                </Link>
+              </section>
+              <section className="">
+                <Button asChild></Button>
+              </section>
+            </aside>
+            <main className="h-full w-full rounded-sm bg-blue-50 px-6 py-4">
+              {children}
+            </main>
+          </Container>
+        </section>
+      </body>
+    </html>
+  );
+}

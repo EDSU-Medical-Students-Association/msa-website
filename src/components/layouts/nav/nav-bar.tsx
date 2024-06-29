@@ -15,8 +15,31 @@ import { Container } from "../base/container";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
+import { auth } from "~/components/firebase/firebase";
+import {onAuthStateChanged, signOut} from 'firebase/auth';
 
 const NavBar = () => {
+  const [user, setUser] = useState<any>(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
   const [show, setShow] = useState<boolean>(false);
   const nav = useRef<ElementRef<"nav">>(null);
 
@@ -79,17 +102,22 @@ const NavBar = () => {
             </li> */}
           </ul>
           <div className="flex gap-3 ">
-            <Button variant={"ghost"} className="" asChild>
-              <Link className="" href={"/sign-up"}>
-                Sign up
-              </Link>
-            </Button>
-            <Button variant={"ghost"} asChild>
-              <Link href={"/sign-in"}>Sign in</Link>
-            </Button>
-            <Button variant={"destructive"} asChild className="py-2">
-              <Link href={""}>Log Out</Link>
-            </Button>
+            {!user ? (
+              <>
+                <Button variant="ghost" className="" asChild>
+                  <Link className="" href="/sign-up">
+                    Sign up
+                  </Link>
+                </Button>
+                <Button variant="ghost" asChild>
+                  <Link href="/sign-in">Sign in</Link>
+                </Button>
+              </>
+            ) : (
+              <Button variant="destructive" asChild className="py-2" onClick={handleLogout}>
+                <Link href="">Log Out</Link>
+              </Button>
+            )}
           </div>
         </section>
         <section className="z-[60] justify-self-end md:hidden">
