@@ -7,6 +7,7 @@ import Link from "next/link";
 import { NavLogo } from "~/components/layouts/nav/nav-logo";
 import { NavWordMark } from "~/components/layouts/nav/nav-word-mark";
 import { Button } from "~/components/ui/button";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 // import { Footer } from "~/components/layouts/footer/footer";
 
 // export const metadata: Metadata = {
@@ -17,7 +18,7 @@ import { Button } from "~/components/ui/button";
 //     "Edo State University Uzairue, Medical Students' Association, EDSUMSA, Nigeria, Medical Education, Medical Students, Future Doctors",
 // };
 
-export default function AuthLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -26,10 +27,10 @@ export default function AuthLayout({
     <html lang="en" className="w-screen overflow-x-hidden">
       <body className={`${BDOGrotesk.variable} font-sans`}>
         <NavBar />
-        <section className=" h-svh w-screen ">
-          <Container className="grid grid-cols-dashboard gap-5 py-10">
-            <aside className="h-full w-full rounded-sm bg-neutral-50 px-6 py-4">
-              <section className="">
+        <section className="h-svh w-screen overflow-y-scroll md:overflow-y-hidden">
+          <Container className="grid grid-rows-xs-aside gap-2 py-10 md:grid-cols-dashboard md:grid-rows-1 md:gap-5">
+            <aside className="grid h-full w-full grid-rows-3 rounded-sm bg-neutral-50 px-4 py-2 md:grid-rows-aside md:px-6 md:py-4">
+              <section>
                 <Link
                   href={"/"}
                   className="flex h-full w-full items-center gap-1 text-sm sm:gap-3"
@@ -38,11 +39,32 @@ export default function AuthLayout({
                   <NavWordMark />
                 </Link>
               </section>
-              <section className="">
-                <Button asChild></Button>
+              <section className="flex flex-col gap-1 md:gap-3">
+                <Button
+                  variant={"secondary"}
+                  asChild
+                  className="w-full rounded-[10px]"
+                >
+                  <Link href={"/dashboard"}>Payment</Link>
+                </Button>
+                <Button
+                  variant={"secondary"}
+                  asChild
+                  className="w-full rounded-[10px]"
+                >
+                  <Link href={"/payments"}>Payment History</Link>
+                </Button>
+              </section>
+              <section className="pt-3">
+                <Button className="w-full rounded-[10px]" variant={"ghost"}>
+                  <span className="pr-3">
+                    <ArrowLeftIcon />
+                  </span>
+                  Log out
+                </Button>
               </section>
             </aside>
-            <main className="h-full w-full rounded-sm bg-blue-50 px-6 py-4">
+            <main className="w-full rounded-sm bg-green-50 px-6 py-4 md:overflow-y-scroll">
               {children}
             </main>
           </Container>

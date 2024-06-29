@@ -104,14 +104,15 @@ const NavBar = () => {
           <div className="flex gap-3 ">
             {!user ? (
               <>
+                <Button variant="ghost" asChild>
+                  <Link href="/sign-in">Sign in</Link>
+                </Button>
                 <Button variant="ghost" className="" asChild>
                   <Link className="" href="/sign-up">
                     Sign up
                   </Link>
                 </Button>
-                <Button variant="ghost" asChild>
-                  <Link href="/sign-in">Sign in</Link>
-                </Button>
+
               </>
             ) : (
               <Button variant="destructive" asChild className="py-2" onClick={handleLogout}>

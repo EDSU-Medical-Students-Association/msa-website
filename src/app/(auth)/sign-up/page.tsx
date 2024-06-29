@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "~/components/firebase/firebase";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle } from "react-icons/ai"; // Import green tick icon
 import { FormButton } from "~/components/ui/form-button";
 
 const userSignUpSchema = z.object({
@@ -38,133 +38,86 @@ const userSignUpSchema = z.object({
 export type UserSignUpSchema = z.infer<typeof userSignUpSchema>;
 
 const SignUp = () => {
-  const [message, setMessage] = useState({ text: "", type: "" }); // State for success or error messages
+   const[email,setEmail]= useState<string>('')
+  const[pswd,setPswd]= useState<string>('')
+  const[check,setCheck]= useState<Boolean>(false)
+  const [message, setMessage] = useState(""); // State for success or error messages
   const router = useRouter(); // Router for redirection
-  const form = useForm<z.infer<typeof userSignUpSchema>>({
-    resolver: zodResolver(userSignUpSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
 
-  const onSubmit = async (values: z.infer<typeof userSignUpSchema>) => {
-    setMessage({ text: "", type: "" }); // Reset message state
+
+  const onSubmit = async (e:any) => {
+    e.preventDefault();
+    setCheck(true);
     try {
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
-      setMessage({ text: "Account created successfully", type: "success" });
-      setTimeout(() => {
-        router.push("/"); // Redirect to home page after 2 seconds
-      }, 2000);
-    } catch (error: any) {
+      await createUserWithEmailAndPassword(auth, email, pswd)
+          .then(()=>{
+            router.push("/");
+          })
+    }
+    catch (error: any) {
       if (error.code === "auth/email-already-in-use") {
-        setMessage({
-          text: "This account exists, login instead",
-          type: "error",
-        });
+        setMessage("This account exists, login instead");
+        setCheck(false);
       } else {
-        setMessage({
-          text: "Error creating account: " + error.message,
-          type: "error",
-        });
+        setMessage("Error creating account: ");
+        setCheck(false);
       }
     }
   };
 
-  return (
-    <section className="h-svh">
-      <Container className="grid h-full items-center">
-        <div className="grid h-fit justify-center">
-          <div className="py-6 text-center">
-            <h2
-              className={cn(
-                crismonPro.variable,
-                "font-serif text-4xl font-bold",
-              )}
-            >
-              Create a New Account
-            </h2>
-          </div>
-          <div className="">
-            {message.text && (
-              <div
-                className={`pb-3 text-center ${message.type === "success" ? "text-green-600" : "text-red-600"}`}
-              >
-                {message.type === "success" && (
-                  <AiOutlineCheckCircle className="mr-2 inline-block" />
-                )}
-                {message.text}
-              </div>
-            )}
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="block">
-                <div className="pb-3">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>E-mail</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="john24.doe@edouniversity.edu.ng"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormDescription>
-                          Enter your school email address.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div>
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input type="password" placeholder="" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          Enter a password that is at least 7 characters long.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="grid justify-center">
-                  <FormButton text={["Create an account", "Loading"]} />
-                </div>
-              </form>
-            </Form>
-          </div>
-          <IconContext.Provider value={{ size: "1.5em" }}>
-            <div className="flex items-center justify-center py-3 font-thin">
-              <Button variant={"outline"} asChild>
-                <Link href={""}>
-                  <span>
-                    <FcGoogle />
-                  </span>
-                  <span className="px-2">Sign up with Google</span>
-                </Link>
-              </Button>
-            </div>
-          </IconContext.Provider>
 
-          <div>
-            <p className="text-center text-sm text-neutral-600 hover:underline">
-              <Link href="/sign-in">or log-in an existing account</Link>
-            </p>
-          </div>
-        </div>
-      </Container>
-    </section>
+    const loader = ()=>{
+    if(check){
+      return(<span style={{marginLeft:'5.6rem'}} className="loading loading-spinner loading-md"></span>)
+    }
+    else {
+      return (<button className="btn btn-primary">Sign Up</button>)
+    }
+  }
+
+  return (
+        <section>
+       <Container className="grid justify-center">
+         <div style={{marginTop:"50%"}} className="py-20 text-center">
+            {message!="" && <div><p style={{color:'red'}}>{message}</p></div>}
+               <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <form onSubmit={onSubmit} className="card-body">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="email" className="input input-bordered" required />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <input onChange={(e)=>setPswd(e.target.value)} type="password" placeholder="password" className="input input-bordered" required />
+                    <label className="label">
+                      <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                    </label>
+                  </div>
+                  <div className="form-control mt-6">
+                    {loader()}
+                  </div>
+                </form>
+                 <div style={{paddingBottom:"2rem"}}>
+                   <Button variant={"outline"} asChild>
+                    <Link href="">
+                      <span>
+                        <FcGoogle />
+                      </span>
+                      <span className="px-2">Sign in with Google</span>
+                    </Link>
+                  </Button>
+                 </div>
+                 <div>
+                  <p style={{fontSize:'12px'}}><a href="/sign-in" >Already have an account? Sign in</a></p>
+                </div>
+              </div>
+         </div>
+       </Container>
+      </section>
   );
 };
 

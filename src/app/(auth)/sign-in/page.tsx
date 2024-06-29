@@ -36,16 +36,13 @@ const userSignInSchema = z.object({
 export type UserSignUpSchema = z.infer<typeof userSignInSchema>;
 
 const SignIn = () => {
+  const[email,setEmail]= useState<string>('')
+  const[pswd,setPswd]= useState<string>('')
+  const[check,setCheck]= useState<Boolean>(false)
   const [message, setMessage] = useState(""); // State for error messages
   const [isCheckingAuth, setIsCheckingAuth] = useState(true); // State for checking auth
   const router = useRouter(); // Router for redirection
-  const form = useForm<z.infer<typeof userSignInSchema>>({
-    resolver: zodResolver(userSignInSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -59,28 +56,29 @@ const SignIn = () => {
     return () => unsubscribe();
   }, [router]);
 
-  const onSubmit = async (values: z.infer<typeof userSignInSchema>) => {
-    setMessage(""); // Reset message state
+
+  const onSubmit = async (e:any) => {
+    e.preventDefault();
+    setCheck(true);
+    // setMessage(""); // Reset message state
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
-        values.email,
-        values.password,
+        email,
+        pswd,
       );
-      const idToken = await userCredential.user.getIdToken();
-      localStorage.setItem("idToken", idToken);
-      setMessage("Success"); // Set success message
-      console.log("Signed in successfully:", userCredential.user);
       router.push("/"); // Redirect to the home page
     } catch (error: any) {
 
-      if (
-        error.code === "auth/wrong-password" ||
-        error.code === "auth/user-not-found"
-      ) {
-        setMessage("Incorrect Email or password");
+      if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+        setMessage("Incorrect user name or password");
+        setCheck(false);
+      } else if (error.code === "auth/invalid-credential") {
+        setMessage("Incorrect user name or password");
+        setCheck(false);
       } else {
         setMessage("Error signing in: " + error.message);
+        setCheck(false);
       }
     }
   };
@@ -89,91 +87,65 @@ const SignIn = () => {
     return <div>Loading...</div>;
   }
 
+
+  const loader = ()=>{
+    if(check){
+      return(<span style={{marginLeft:'5.6rem'}} className="loading loading-spinner loading-md"></span>)
+    }
+    else {
+      return (<button className="btn btn-primary">Login</button>)
+    }
+  }
+
+
+
+
   return (
-    <section className="h-svh">
-      <Container className="grid h-full items-center">
-        <div className="grid h-fit justify-center">
-          <div className="py-6 text-center">
-            <h2
-              className={cn(
-                crismonPro.variable,
-                "font-serif text-4xl font-bold",
-              )}
-            >
-              Log-in to Your Account
-            </h2>
-          </div>
-          <div className="">
-            {message && (
-              <div className="pb-3 text-center text-red-600">{message}</div>
-            )}
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="block">
-                <div className="pb-3">
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>E-mail</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            placeholder="johndoe@gmail.com"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+      <section>
+       <Container className="grid justify-center">
+         <div style={{marginTop:"50%"}} className="py-20 text-center">
+            {message!="" && <div><p style={{color:'red'}}>{message}</p></div>}
+               <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <form onSubmit={onSubmit} className="card-body">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="email" className="input input-bordered" required />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <input onChange={(e)=>setPswd(e.target.value)} type="password" placeholder="password" className="input input-bordered" required />
+                    <label className="label">
+                      <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                    </label>
+                  </div>
+                  <div className="form-control mt-6">
+                    {loader()}
+                  </div>
+                </form>
+                 <div style={{paddingBottom:"2rem"}}>
+                   <Button variant={"outline"} asChild>
+                    <Link href="">
+                      <span>
+                        <FcGoogle />
+                      </span>
+                      <span className="px-2">Sign in with Google</span>
+                    </Link>
+                  </Button>
+                 </div>
                 <div>
-                  <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Password</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="password"
-                            placeholder="jdxx2842"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <p style={{fontSize:"12px"}}><a href={'sign-up'} >Dont have an account? Sign up</a></p>
                 </div>
-                <div className="grid justify-center">
-                  <FormButton text={["Sign in to your account", "Loading"]} />
-                </div>
-              </form>
-            </Form>
-          </div>
-          <IconContext.Provider value={{ size: "1.5em" }}>
-            <div className="flex items-center justify-center py-3 font-thin">
-              <Button variant={"outline"} asChild>
-                <Link href={""}>
-                  <span>
-                    <FcGoogle />
-                  </span>
-                  <span className="px-2">Sign in with Google</span>
-                </Link>
-              </Button>
-            </div>
-          </IconContext.Provider>
-          <div>
-            <p className="text-center text-sm text-neutral-600 hover:underline">
-              <Link href="/sign-up">or create a new account</Link>
-            </p>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
+              </div>
+         </div>
+       </Container>
+      </section>
+
+
+  )
 };
 
 export default SignIn;

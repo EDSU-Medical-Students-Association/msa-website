@@ -9,7 +9,7 @@ import {onAuthStateChanged} from "firebase/auth";
 import { auth } from "~/components/firebase/firebase";
 
 function Dashboard() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function Dashboard() {
     <>
       <div className="flex justify-between">
         <div>
-          <h6 className="text-2xl">Welcome, {name}</h6>
+          <h6 className="text-2xl">Welcome, {user?.email}</h6>
         </div>
 
         <div>

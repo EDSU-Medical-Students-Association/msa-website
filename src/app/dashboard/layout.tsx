@@ -52,7 +52,7 @@ export default function DashboardLayout({
                   asChild
                   className="w-full rounded-[10px]"
                 >
-                  <Link href={"/dashboard"}>Payment History</Link>
+                  <Link href={"/payments"}>Payment History</Link>
                 </Button>
               </section>
               <section className="pt-3">

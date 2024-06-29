@@ -4,12 +4,11 @@ import axios from 'axios';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "~/components/firebase/firebase";
 import moment from 'moment';
-import { useRouter } from 'next/router'; // Corrected import
 
 export default function PaymentTable() {
-    const [payments, setPayments] = useState<[]>();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [payments, setPayments] = useState<any>();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<any>('');
     const [user, setUser] = useState<any>(null);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -43,7 +42,7 @@ export default function PaymentTable() {
         try {
              const options = {
                 method: "GET",
-                url: "http://localhost:8001/getUserPayments",
+                url: "https://edsumsa-backend.onrender.com/getUserPayments",
                 headers: {
                     accept: "application/json",
                     authorization: `Bearer ${user.accessToken}`
@@ -85,20 +84,20 @@ export default function PaymentTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {payments ? payments.map((payment, index) => (
+                    {payments ? payments.map((payment:any, index:any) => (
                         <tr key={index}>
                             <td className="border px-4 py-2">{index + 1}</td>
-                            <td className="border px-4 py-2">{payment.paymentType}</td>
-                            <td className="border px-4 py-2">{payment.paymentId}</td>
+                            <td className="border px-4 py-2">{payment?.paymentType}</td>
+                            <td className="border px-4 py-2">{payment?.paymentId}</td>
                             <td className="border px-4 py-2">
                               {moment(payment.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                             </td>
-                            <td className="border px-4 py-2">{payment.paymentStatus}</td>
+                            <td className="border px-4 py-2">{payment?.paymentStatus}</td>
                             <td className="border px-4 py-2">{payment?.paymentAmount}</td>
                         </tr>
                     )) : (
                         <tr>
-                            <td colSpan="6" className="border px-4 py-2 text-center">No Payment Made</td>
+                            <td  className="border px-4 py-2 text-center"><p>No Payment Made</p></td>
                         </tr>
                     )}
                 </tbody>
