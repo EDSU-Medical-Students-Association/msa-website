@@ -1,4 +1,5 @@
 "use client";
+// @ts-ignore
 import LocomotiveScroll from "locomotive-scroll";
 import React, { useEffect, useRef, ElementRef } from "react";
 import { cn } from "~/lib/utils";

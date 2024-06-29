@@ -8,6 +8,9 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+    daisyui: {
+    themes: ["light"],
+  },
   prefix: "",
   theme: {
     container: {
@@ -95,7 +98,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),require('daisyui'),],
 } satisfies Config;
 
 export default config;
