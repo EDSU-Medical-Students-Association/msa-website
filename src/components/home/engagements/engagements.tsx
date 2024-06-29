@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { useRef, ElementRef } from "react";
 
@@ -10,10 +10,10 @@ import { cn } from "~/lib/utils";
 
 import { Engagement } from "./engagement";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { useGSAP } from "@gsap/react";
+// gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export interface Info {
   category: "Events" | "News";
@@ -68,46 +68,46 @@ const information: Info[] = [
 ];
 
 export const Engagements = () => {
-  const container = useRef<ElementRef<"section">>(null);
+  // const container = useRef<ElementRef<"section">>(null);
 
-  // Animation is bugged: Fix the starting Trigger of the animation
-  useGSAP(
-    () => {
-      const tl = gsap.timeline();
-      tl.from(".card", {
-        y: 100,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: 0.2,
-        scrollTrigger: ".card",
-      })
-        .from(".anim-width-line", {
-          scrollTrigger: ".anim-width-line",
-          width: "0%",
-          duration: 2,
-          ease: "power3.out",
-        })
-        .from(".anim-pos-image", {
-          scrollTrigger: ".anim-pos-image",
-          x: -200,
-          duration: 0.7,
-          ease: "power3.out",
-        })
-        .from(".anim-pos-details", {
-          scrollTrigger: ".anim-pos-details",
-          x: 200,
-          opacity: 0,
-          duration: 0.5,
-          ease: "power3.out",
-          stagger: 0.1,
-        });
-    },
-    { scope: container },
-  );
+  // // Animation is bugged: Fix the starting Trigger of the animation
+  // useGSAP(
+  //   () => {
+  //     const tl = gsap.timeline();
+  //     tl.from(".card", {
+  //       y: 100,
+  //       opacity: 0,
+  //       duration: 0.6,
+  //       ease: "power2.out",
+  //       stagger: 0.2,
+  //       scrollTrigger: ".card",
+  //     })
+  //       .from(".anim-width-line", {
+  //         scrollTrigger: ".anim-width-line",
+  //         width: "0%",
+  //         duration: 2,
+  //         ease: "power3.out",
+  //       })
+  //       .from(".anim-pos-image", {
+  //         scrollTrigger: ".anim-pos-image",
+  //         x: -200,
+  //         duration: 0.7,
+  //         ease: "power3.out",
+  //       })
+  //       .from(".anim-pos-details", {
+  //         scrollTrigger: ".anim-pos-details",
+  //         x: 200,
+  //         opacity: 0,
+  //         duration: 0.5,
+  //         ease: "power3.out",
+  //         stagger: 0.1,
+  //       });
+  //   },
+  //   { scope: container },
+  // );
 
   return (
-    <section ref={container} className=" overflow-hidden bg-neutral-200 py-16">
+    <section className=" overflow-hidden bg-neutral-200 py-16">
       <Container>
         <div className="grid gap-3 pb-6 md:grid-cols-2">
           <div className="">
@@ -127,7 +127,7 @@ export const Engagements = () => {
               asChild
               className="border border-neutral-950 bg-neutral-200"
             >
-              <Link href={"/"}>View all news & events</Link>
+              <p>View all news & events</p>
             </Button>
           </div>
         </div>

@@ -91,7 +91,13 @@ export const Hero = () => {
             </div>
             <div className="flex w-full justify-center gap-3 md:justify-start">
               <Button asChild size={"lg"}>
-                <Link href={"/"}>About School</Link>
+                <a
+                  href={"https://www.edouniversity.edu.ng/home/about"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  About School
+                </a>
               </Button>
               <Button
                 asChild
@@ -105,12 +111,8 @@ export const Hero = () => {
           </div>
         </div>
 
-        <div className=" grid overflow-x-hidden">
-          <div
-            data-scroll
-            data-scroll-speed={"0.3"}
-            className="anim-pos-image border-1 relative h-[75vh] w-11/12 self-center justify-self-center rounded-[9px] border-blue-400 bg-blue-200 md:h-full md:justify-self-end"
-          >
+        <div className="grid overflow-x-hidden">
+          <div className="anim-pos-image border-1 relative h-[75vh] w-11/12 self-center justify-self-center rounded-[9px] border-blue-400 bg-blue-200 md:h-full md:justify-self-end">
             <Image
               priority
               fill
@@ -121,11 +123,7 @@ export const Hero = () => {
               className="rounded-[9px]"
             />
           </div>
-          <div
-            data-scroll
-            data-scroll-speed={"0.6"}
-            className="anim-pos-info absolute top-full z-10 w-60 translate-x-9 justify-self-center rounded-[6px] border border-green-500 bg-[#C3EFC8] p-4 text-left md:top-3/4 md:w-80 md:justify-self-start lg:w-96"
-          >
+          <div className="anim-pos-info absolute top-full z-10 w-60 justify-self-center rounded-[6px] border border-green-500 bg-[#C3EFC8] p-4 text-left md:top-3/4 md:w-80 md:translate-x-9 md:justify-self-start lg:w-96">
             <div>
               <p>May</p>
             </div>
@@ -139,11 +137,11 @@ export const Hero = () => {
                 NIMSA Games 101 for Medical Students&apos; Association
               </h3>
             </div>
-            <div>
+            {/* <div>
               <Goto href="/" arrowDirection="straight">
                 Discover Events
               </Goto>
-            </div>
+            </div> */}
           </div>
         </div>
       </Container>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ElementRef, useRef } from "react";
+import { ElementRef, useRef, useState } from "react";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -12,8 +12,9 @@ import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 
 interface MenuProps {
   show: boolean;
+  toggleShow: () => void;
 }
-export const Menu = ({ show }: MenuProps) => {
+export const Menu = ({ show, toggleShow }: MenuProps) => {
   const container = useRef<ElementRef<"div">>(null);
 
   useGSAP(
@@ -35,27 +36,39 @@ export const Menu = ({ show }: MenuProps) => {
     >
       <div className="h-5/6">
         <ul className="flex h-full flex-col justify-around">
-          <li className="item flex gap-3">
+          <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[01]</span>
             <NavLink href="/" text="Home" />
           </li>
-          <li className="item flex gap-3">
+          <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[02]</span>
             <NavLink href="/dashboard" text="Dashboard" />
           </li>
-          {/* <li className="item flex gap-3">
+          {/* <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[03]</span>
             <NavLink href="/" text="Info" />
           </li> */}
-          <li className="item flex gap-3">
+          <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[03]</span>
             <NavLink href="/about" text="About" />
           </li>
-          <li className="item flex gap-3">
+          <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[04]</span>
             <NavLink href="/contact" text="Contact" />
           </li>
-          {/* <li className="item flex gap-3">
+          <li className="item flex gap-3" onClick={toggleShow}>
+            <span className="text-xs">[05]</span>
+            <NavLink href="/sign-in" text="Sign In" />
+          </li>
+          <li className="item flex gap-3" onClick={toggleShow}>
+            <span className="text-xs">[06]</span>
+            <NavLink href="/sign-up" text="Sign Up" />
+          </li>
+          <li className="item flex gap-3" onClick={toggleShow}>
+            <span className="text-xs">[07]</span>
+            <NavLink href="/" text="Log out" />
+          </li>
+          {/* <li className="item flex gap-3" onClick={toggleShow}>
             <span className="text-xs">[05]</span>
             <NavLink href="/" text="Admissions" />
           </li> */}

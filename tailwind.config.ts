@@ -27,8 +27,13 @@ const config = {
       },
       gridTemplateColumns: {
         "xs-nav": "4fr 1fr",
-        "dashboard": "2fr 6fr",
+        dashboard: "2fr 6fr",
         "xs-auth-nav": "4fr 1fr 1fr",
+      },
+      gridTemplateRows: {
+        aside: "2fr 6fr 1fr",
+        "xs-aside": "1fr 8fr",
+        "xs-dash-cont": "",
       },
       fontFamily: {
         serif: ["var(--font-crismon-pro)"],

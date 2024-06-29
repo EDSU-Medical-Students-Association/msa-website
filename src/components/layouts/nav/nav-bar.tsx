@@ -20,6 +20,10 @@ const NavBar = () => {
   const [show, setShow] = useState<boolean>(false);
   const nav = useRef<ElementRef<"nav">>(null);
 
+  const toggleShow = () => {
+    setShow(prevState => !prevState)
+  }
+
   useGSAP(
     () => {
       gsap.from(".anim-pos-link", {
@@ -100,7 +104,7 @@ const NavBar = () => {
             </div>
           </Button>
         </section>
-        <Menu show={show} />
+        <Menu show={show} toggleShow={toggleShow} />
       </Container>
     </nav>
   );

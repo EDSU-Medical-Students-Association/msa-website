@@ -14,7 +14,7 @@ export default function About() {
         src="/games_one.jpg"
         button
         buttonText="Contact us"
-        href="/"
+        href="/contact"
         alt="A medical student playing chess, participating in the games"
         title="Unveiling Our commitment to Excellence"
         description="As a distinguished medical students association within our university, we are committed to upholding a proud tradition of excellence in education."
@@ -24,7 +24,6 @@ export default function About() {
       <Gallery />
       <Question />
       <Support />
-
     </main>
   );
 }

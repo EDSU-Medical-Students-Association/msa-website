@@ -5,7 +5,6 @@ import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { Container } from "../../layouts/base/container";
 
@@ -21,7 +20,7 @@ export const Banner = () => {
         </div>
         <div className="flex items-start py-6">
           <Button size={"lg"} asChild>
-            <Link href={"/"}>Learn More</Link>
+            <a href={"https://www.edouniversity.edu.ng/admissions/undergraduate"} target="_blank" rel="noopener noreferrer">Learn More</a>
           </Button>
         </div>
       </Container>

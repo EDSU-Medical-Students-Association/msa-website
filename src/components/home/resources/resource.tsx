@@ -51,11 +51,11 @@ export const Resource = ({
         </CardDescription>
       </CardContent>
       <CardFooter className="p-0 md:text-2xs lg:text-xs">
-        <div>
+        {/* <div>
           <Goto href={href} arrowDirection="slant">
             Learn More
           </Goto>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   );

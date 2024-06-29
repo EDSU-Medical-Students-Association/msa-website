@@ -19,11 +19,11 @@ export const Info = () => {
               Discover Edo University Iyamho
             </h3>
           </div>
-          <div className="grid items-center justify-center md:justify-start">
+          {/* <div className="grid items-center justify-center md:justify-start">
             <Button asChild>
               <Link href={"/"}>Our Departments</Link>
             </Button>
-          </div>
+          </div> */}
         </div>
         <div>
           <p className="px-8 md:px-0">

@@ -83,9 +83,11 @@ export const Services = () => {
             <Button
               variant={"secondary"}
               asChild
+              disabled
               className="border border-neutral-950 bg-white"
             >
-              <Link href={"/"}>Learn More</Link>
+              {/* <Link href={"/"}>Learn More</Link> */}
+              <p>Learn More</p>
             </Button>
           </div>
         </div>
