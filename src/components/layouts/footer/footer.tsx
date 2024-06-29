@@ -17,7 +17,10 @@ const blocks: Block[] = [
   {
     heading: "Admissions",
     links: [
-      { text: "Department", href: "" },
+      {
+        text: "Departments",
+        href: "https://www.edouniversity.edu.ng/home/programs",
+      },
       { text: "Advanced Placement Program", href: "" },
       { text: "Safe Schools Program", href: "" },
     ],
@@ -25,7 +28,7 @@ const blocks: Block[] = [
   {
     heading: "Follow Us",
     links: [
-      { text: "Facebook", href: "" },
+      { text: "Snapchat", href: "" },
       { text: "Twitter", href: "" },
       { text: "YouTube", href: "" },
       { text: "Instagram", href: "" },

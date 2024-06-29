@@ -53,9 +53,9 @@ export const Engagement = ({
           </div>
 
           <div className="anim-pos-details lg:text-md self-end text-xs md:text-sm">
-            <Goto href={href} arrowDirection="straight">
+            {/* <Goto href={href} arrowDirection="straight">
               Learn More
-            </Goto>
+            </Goto> */}
           </div>
         </div>
       </CardContent>

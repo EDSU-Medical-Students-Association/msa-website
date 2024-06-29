@@ -56,30 +56,27 @@ export const Hero = (props: HeroProps) => {
     { scope: container },
   );
   return (
-    <header className=" h-svh w-full text-center md:text-left">
-      <Container className=" grid grid-cols-1  md:grid-cols-2">
+    <header className="h-svh w-full text-center md:text-left">
+      <Container className="grid grid-cols-1 md:grid-cols-2">
         <section
           ref={container}
           style={{ backgroundColor: `${props.theme}` }}
-          className={cn(`bg-[${props.theme}]`, "grid items-end px-12 py-20")}
+          className={cn(
+            `bg-[${props.theme}]`,
+            "grid items-end px-6 py-20 md:px-12",
+          )}
         >
           <div className="flex flex-col gap-3">
-            <hgroup className="flex flex-col gap-3 px-6 md:px-0">
+            <hgroup className="flex flex-col gap-3 px-4 md:px-0 items-center md:items-start">
               <h1
-                data-scroll
-                data-sroll-speed={"0.3"}
                 className={cn(
                   crismonPro.variable,
-                  "anim-pos-title w-full font-serif text-6xl md:w-9/12 2xl:text-7xl",
+                  "anim-pos-title w-full font-serif text-4xl md:w-9/12 md:text-6xl 2xl:text-7xl",
                 )}
               >
                 {props.title}
               </h1>
-              <h2
-                data-scroll
-                data-scroll-speed={"0.01"}
-                className="anim-pos-subtitle w-full sm:text-sm md:w-2/3"
-              >
+              <h2 className="anim-pos-subtitle w-full sm:text-sm md:w-2/3">
                 {props.description}
               </h2>
             </hgroup>
@@ -92,7 +89,7 @@ export const Hero = (props: HeroProps) => {
             ) : null}
           </div>
         </section>
-        <section className="relative">
+        <section className="relative w-full">
           <Image
             priority
             fill
