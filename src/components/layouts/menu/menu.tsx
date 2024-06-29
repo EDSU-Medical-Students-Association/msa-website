@@ -75,12 +75,12 @@ export const Menu = ({ show, toggleShow }: MenuProps) => {
         </ul>
       </div>
       <div className="flex h-1/6 items-end justify-end text-base">
-        <Link href="/" className="flex justify-center gap-1">
+        <a href="/" className="flex justify-center gap-1">
           <span>Instagram</span>
           <span className="pt-1.5">
             <ArrowTopRightIcon />
           </span>
-        </Link>
+        </a>
       </div>
     </div>
   );

@@ -21,8 +21,8 @@ const NavBar = () => {
   const nav = useRef<ElementRef<"nav">>(null);
 
   const toggleShow = () => {
-    setShow(prevState => !prevState)
-  }
+    setShow((prevState) => !prevState);
+  };
 
   useGSAP(
     () => {
@@ -57,37 +57,37 @@ const NavBar = () => {
             <NavWordMark />
           </Link>
         </section>
-        <section className="hidden md:flex md:items-center md:gap-6">
-          <ul className="h-full items-center justify-end gap-6 md:flex">
-            <li>
+        <section className="hidden md:flex md:items-center md:justify-end md:gap-3 lg:gap-5">
+          <ul className="h-full items-center justify-end md:flex md:gap-2 md:text-sm lg:gap-6 lg:text-base">
+            <li className="anim-pos-link">
               <NavLink href="/" text="Index" />
             </li>
-            <li>
+            <li className="anim-pos-link">
               <NavLink href="/dashboard" text="Dashboard  " />
             </li>
-            {/* <li>
+            {/* <li className="anim-pos-link">
               <NavLink href="/info" text="Info" />
             </li> */}
-            <li>
+            <li className="anim-pos-link">
               <NavLink href="/about" text="About" />
             </li>
-            <li>
+            <li className="anim-pos-link">
               <NavLink href="/contact" text="Contact" />
             </li>
-            {/* <li>
+            {/* <li className="anim-pos-link">
               <NavLink href="" text="Admissions" />
             </li> */}
           </ul>
-          <div className="flex gap-3 ">
-            <Button variant={"ghost"} className="" asChild>
+          <div className="flex gap-1 md:gap-1 md:text-sm lg:gap-3 lg:text-base ">
+            <Button variant={"ghost"} asChild size={"sm"} className="h-6">
               <Link className="" href={"/sign-up"}>
                 Sign up
               </Link>
             </Button>
-            <Button variant={"ghost"} asChild>
+            <Button variant={"ghost"} asChild size={"sm"} className="h-6">
               <Link href={"/sign-in"}>Sign in</Link>
             </Button>
-            <Button variant={"destructive"} asChild className="py-2">
+            <Button variant={"outline"} asChild size={"sm"} className="h-6">
               <Link href={""}>Log Out</Link>
             </Button>
           </div>

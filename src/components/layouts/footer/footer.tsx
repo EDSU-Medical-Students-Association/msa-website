@@ -7,11 +7,11 @@ const blocks: Block[] = [
   {
     heading: "School",
     links: [
-      { text: "About", href: "" },
+      { text: "About", href: "/about" },
       { text: "Services", href: "" },
       { text: "Admissions", href: "" },
       { text: "News & Events", href: "" },
-      { text: "Contact Us", href: "" },
+      { text: "Contact Us", href: "/contact" },
     ],
   },
   {
@@ -29,9 +29,9 @@ const blocks: Block[] = [
     heading: "Follow Us",
     links: [
       { text: "Snapchat", href: "" },
-      { text: "Twitter", href: "" },
-      { text: "YouTube", href: "" },
-      { text: "Instagram", href: "" },
+      { text: "Twitter", href: "https://x.com/EDSUMSA" },
+      { text: "TikTok", href: "https://www.tiktok.com/@edsumsa" },
+      { text: "Instagram", href: "https://www.instagram.com/edsumsa/" },
     ],
   },
 ];
