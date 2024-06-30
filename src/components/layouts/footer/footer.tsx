@@ -73,7 +73,7 @@ export const Footer = () => {
         <section className="grid">
           <div className="text-center">
             <p>
-              Developers:{" "}
+              Developed by: {" "}
               {developers.map((developer, index) => (
                 <span style={{color:'blue'}} key={developer.email}>
                   <a href={`mailto:${developer.email}`}>{developer.name}</a>

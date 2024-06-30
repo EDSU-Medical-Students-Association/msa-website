@@ -84,7 +84,7 @@ const PaymentForm = () => {
   const [phone, setPhone] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const publicKey = "pk_live_d4651d30a8f745f579c4fcff28ea0e9007d158b9";
-  const amount = 206500;
+  const amount = 2065000;
 
   const savePaymentDetails = async (data: any) => {
     setIsSaving(true);
