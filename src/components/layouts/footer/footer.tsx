@@ -36,6 +36,17 @@ const blocks: Block[] = [
   },
 ];
 
+interface Developer {
+  name: string;
+  email: string;
+}
+
+const developers: Developer[] = [
+  { name: 'Ademola OluwaTobi', email: 'oluwatobiadee@gmail.com' },
+  { name: 'Abduljalal Mohammed', email: 'abduljalal849@gmail.com' },
+  { name: 'Jossy Chidi', email: 'cjossywike546@gmail.com' },
+];
+
 export const Footer = () => {
   return (
     <footer className="py-20">
@@ -56,7 +67,20 @@ export const Footer = () => {
             <p>&copy; 2024 All Rights Reserved</p>
           </div>
           <div className="text-right">
-            <p>Liscences</p>
+            <p>Licences</p>
+          </div>
+        </section>
+        <section className="grid">
+          <div className="text-center">
+            <p>
+              Developers:{" "}
+              {developers.map((developer, index) => (
+                <span style={{color:'blue'}} key={developer.email}>
+                  <a href={`mailto:${developer.email}`}>{developer.name}</a>
+                  {index < developers.length - 1 && ", "}
+                </span>
+              ))}
+            </p>
           </div>
         </section>
       </Container>

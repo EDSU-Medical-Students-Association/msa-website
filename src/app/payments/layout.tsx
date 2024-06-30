@@ -1,3 +1,5 @@
+"use client"
+
 // import type { Metadata } from "next";
 import { BDOGrotesk } from "~/fonts";
 // import "./globals.scss";
@@ -8,6 +10,9 @@ import { NavLogo } from "~/components/layouts/nav/nav-logo";
 import { NavWordMark } from "~/components/layouts/nav/nav-word-mark";
 import { Button } from "~/components/ui/button";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import {onAuthStateChanged, signOut} from "firebase/auth";
+import {auth} from "~/components/firebase/firebase";
+import {useEffect, useState} from "react";
 // import { Footer } from "~/components/layouts/footer/footer";
 
 // export const metadata: Metadata = {
@@ -23,6 +28,26 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [user, setUser] = useState<any>(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
   return (
     <html lang="en" className="w-screen overflow-x-hidden">
       <body className={`${BDOGrotesk.variable} font-sans`}>
@@ -56,7 +81,7 @@ export default function DashboardLayout({
                 </Button>
               </section>
               <section className="pt-3">
-                <Button className="w-full rounded-[10px]" variant={"ghost"}>
+                <Button className="w-full rounded-[10px]" variant={"ghost"} onClick={handleLogout}>
                   <span className="pr-3">
                     <ArrowLeftIcon />
                   </span>
