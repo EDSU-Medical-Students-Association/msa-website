@@ -47,6 +47,7 @@ const NavBar = () => {
     setShow(prevState => !prevState)
   }
 
+
   useGSAP(
     () => {
       gsap.from(".anim-pos-link", {
@@ -115,9 +116,10 @@ const NavBar = () => {
 
               </>
             ) : (
-              <Button variant="destructive" asChild className="py-2" onClick={handleLogout}>
-                <Link href="">Log Out</Link>
+              <Button asChild className=" py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600" style={{marginLeft:'22rem'}} onClick={handleLogout}>
+                <Link href="/">Log Out</Link>
               </Button>
+
             )}
           </div>
         </section>

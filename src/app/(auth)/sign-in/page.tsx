@@ -24,7 +24,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { useState, useEffect } from "react"; // Import useState and useEffect for managing state and side effects
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import { auth } from "~/components/firebase/firebase"; // Updated import path
 import { FormButton } from "~/components/ui/form-button";
 
@@ -82,6 +82,17 @@ const SignIn = () => {
       }
     }
   };
+  const signInWithGoogle = async () => {
+    setCheck(true);
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      setCheck(false);
+    } catch (error) {
+      console.error("Error signing in with Google: ", error);
+      setCheck(false);
+    }
+  };
 
   if (isCheckingAuth) {
     return <div>Loading...</div>;
@@ -101,51 +112,68 @@ const SignIn = () => {
 
 
   return (
-      <section>
-       <Container className="grid justify-center">
-         <div style={{marginTop:"50%"}} className="py-20 text-center">
-            {message!="" && <div><p style={{color:'red'}}>{message}</p></div>}
-               <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                <form onSubmit={onSubmit} className="card-body">
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Email</span>
-                    </label>
-                    <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="email" className="input input-bordered" required />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Password</span>
-                    </label>
-                    <input onChange={(e)=>setPswd(e.target.value)} type="password" placeholder="password" className="input input-bordered" required />
-                    <label className="label">
-                      <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                    </label>
-                  </div>
-                  <div className="form-control mt-6">
-                    {loader()}
-                  </div>
-                </form>
-                 <div style={{paddingBottom:"2rem"}}>
-                   <Button variant={"outline"} asChild>
-                    <Link href="">
-                      <span>
-                        <FcGoogle />
-                      </span>
-                      <span className="px-2">Sign in with Google</span>
-                    </Link>
-                  </Button>
-                 </div>
-                <div>
-                  <p style={{fontSize:"12px"}}><a href={'sign-up'} >Dont have an account? Sign up</a></p>
-                </div>
-              </div>
-         </div>
-       </Container>
-      </section>
-
-
-  )
+    <section className="min-h-screen flex items-center justify-center">
+      <Container className="w-full md:max-w-lg lg:max-w-xl p-4">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+            Sign In To <span className="font-extrabold">EDSUMSA</span> Portal
+          </h1>
+          {message && <p className="text-red-500 mb-4">{message}</p>}
+        </div>
+        <div className="card bg-base-100 w-full shadow-2xl p-6 md:p-8 lg:p-10">
+          <form onSubmit={onSubmit} className="space-y-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="email"
+                className="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                onChange={(e) => setPswd(e.target.value)}
+                type="password"
+                placeholder="password"
+                className="input input-bordered w-full"
+                required
+              />
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
+            </div>
+            <div className="form-control mt-6">
+              {loader()}
+            </div>
+          </form>
+          <div className="mt-6">
+            <Button variant={"outline"} asChild onClick={signInWithGoogle}>
+              <Link href="">
+                <span>
+                  <FcGoogle />
+                </span>
+                <span className="px-2">Sign in with Google</span>
+              </Link>
+            </Button>
+          </div>
+          <div className="text-center mt-4">
+            <p className="text-sm">
+              <Link href={"sign-up"}>Dont have an account? Sign up</Link>
+            </p>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
 };
 
 export default SignIn;
