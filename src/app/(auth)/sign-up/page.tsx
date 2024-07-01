@@ -43,6 +43,7 @@ const SignUp = () => {
   const[check,setCheck]= useState<Boolean>(false)
   const [message, setMessage] = useState(""); // State for success or error messages
   const router = useRouter(); // Router for redirection
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
 
   const onSubmit = async (e:any) => {
@@ -87,6 +88,11 @@ const SignUp = () => {
     }
   }
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+
   return (
     <section className="min-h-screen flex items-center justify-center">
       <Container className="w-full md:max-w-lg lg:max-w-xl p-4">
@@ -114,13 +120,44 @@ const SignUp = () => {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                onChange={(e) => setPswd(e.target.value)}
-                type="password"
-                placeholder="Password"
-                className="input input-bordered w-full"
-                required
-              />
+              <div className="relative">
+                <input
+                  onChange={(e) => setPswd(e.target.value)}
+                  type={isPasswordVisible ? "text" : "password"}
+                  placeholder="password"
+                  className="input input-bordered w-full"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-600"
+                >
+                  {isPasswordVisible ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M10 3C5 3 1.73 7.11 1 9.5 1.73 11.89 5 16 10 16c5 0 8.27-4.11 9-6.5C18.27 7.11 15 3 10 3zm0 11a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 2a9 9 0 018.94 8.12 1 1 0 01-.75 1.1 1 1 0 01-1.1-.74A7 7 0 103.9 9.49a1 1 0 01-1.1.74 1 1 0 01-.75-1.1A9 9 0 0110 2zm0 16a8.96 8.96 0 01-7.55-4.02A8.967 8.967 0 0110 4a8.96 8.96 0 017.55 4.02A8.967 8.967 0 0110 18z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
