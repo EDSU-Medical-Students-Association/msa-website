@@ -68,10 +68,6 @@ export const Menu = ({ show, toggleShow }: MenuProps) => {
             <span className="text-xs">[07]</span>
             <NavLink href="/" text="Log out" />
           </li>
-          {/* <li className="item flex gap-3" onClick={toggleShow}>
-            <span className="text-xs">[05]</span>
-            <NavLink href="/" text="Admissions" />
-          </li> */}
         </ul>
       </div>
     </div>
